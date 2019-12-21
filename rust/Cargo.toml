@@ -1,0 +1,24 @@
+[package]
+name = "pietdemo"
+version = "0.1.0"
+authors = ["Marco Munizaga <marco@marcopolo.io>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+[target.'cfg(target_os = "android")'.dependencies]
+jni-sys = "0.3.0"
+jni-glue = "0.0.9"
+log = "0.4.8"
+# TODO only ask for specific features
+# jni-android-sys = {version = "0.0.9",  features = ["api-level-28"]}
+android_logger = "0.8"
+piet-common = {path = "../../piet/piet-common", features = ["android"]}
+
+[patch.crates-io]
+# Local fork that lets me turn Local and Argument int Global
+jni-glue = {path = "../../jni-bindgen/jni-glue"}
+
+[lib]
+crate-type = ["cdylib"]
