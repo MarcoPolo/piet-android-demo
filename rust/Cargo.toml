@@ -15,6 +15,8 @@ log = "0.4.8"
 # jni-android-sys = {version = "0.0.9",  features = ["api-level-28"]}
 android_logger = "0.8"
 piet-common = {path = "../../piet/piet-common", features = ["android"]}
+piet = {path = "../../piet/piet"}
+image = "0.20.1"
 
 [patch.crates-io]
 # Local fork that lets me turn Local and Argument int Global
