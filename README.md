@@ -3,6 +3,9 @@
 This is a Demo app that uses
 [piet-android](https://github.com/marcopolo/piet) to draw a line with Rust. It also draws to a bitmap and saves it in a cache file to inspect later.
 
+## Screenshot
+![android-screenshot](https://marcopolo.keybase.pub/piet-screenshot.png)
+
 ## Running
 
 The easiest approach is probably to just install Android Studio and open this folder. Then connect your phone and hit run.
