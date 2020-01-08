@@ -2,15 +2,16 @@ package io.marcopolo.pietdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.system.Os
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         System.loadLibrary("pietdemo")
-        setContentView(R.layout.activity_main)
-        initRust()
+        initRust(cacheDir.absolutePath)
+        setContentView(PietDemoView(this))
     }
 
-    external fun initRust()
+    external fun initRust(cachePath: String)
 }

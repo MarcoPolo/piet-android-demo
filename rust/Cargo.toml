@@ -7,20 +7,25 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
 [target.'cfg(target_os = "android")'.dependencies]
 jni-sys = "0.3.0"
 jni-glue = "0.0.9"
+jni = "0.14.0"
 log = "0.4.8"
 # TODO only ask for specific features
-# jni-android-sys = {version = "0.0.9",  features = ["api-level-28"]}
+jni-android-sys = {version = "0.0.9",  features = [
+    "api-level-28",
+    "java-lang-String",
+]}
 android_logger = "0.8"
 piet-common = {path = "../../piet/piet-common", features = ["android"]}
 piet = {path = "../../piet/piet"}
 image = "0.20.1"
 
 [patch.crates-io]
-# Local fork that lets me turn Local and Argument int Global
-jni-glue = {path = "../../jni-bindgen/jni-glue"}
+# Local fork that lets us turn Local into Global
+jni-glue = {git = "https://github.com/marcopolo/jni-bindgen", branch = "jni-glue-only"}
 
 [lib]
 crate-type = ["cdylib"]
