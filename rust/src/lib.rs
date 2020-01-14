@@ -38,7 +38,7 @@ fn init_log() {
     }));
 }
 
-fn draw_on_render_context(rc: &mut AndroidRenderContext<'_, '_>) {
+fn draw_on_render_context(rc: &mut AndroidRenderContext<'_>) {
     rc.clear(Color::WHITE);
     let brush = rc.solid_brush(Color::rgb8(0x00, 0x00, 0x80));
     rc.stroke(Line::new((10.0, 10.0), (100.0, 50.0)), &brush, 1.0);
@@ -88,7 +88,7 @@ pub extern "system" fn Java_io_marcopolo_pietdemo_PietDemoView_onDraw(
 ) {
     info!("Here in onDraw");
     let canvas = unsafe { canvas.with_unchecked(env).unwrap() };
-    let mut canvas_context = CanvasContext::new_from_canvas(&canvas);
-    let mut android_render_context = AndroidRenderContext::new(&mut canvas_context);
+    let canvas_context = CanvasContext::new_from_canvas(canvas);
+    let mut android_render_context = AndroidRenderContext::new(canvas_context);
     draw_on_render_context(&mut android_render_context);
 }
