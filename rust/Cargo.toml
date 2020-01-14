@@ -11,28 +11,28 @@ time = "0.1.39"
 
 [target.'cfg(target_os = "android")'.dependencies]
 jni-sys = "0.3.0"
-jni-glue = "0.0.9"
+jni-glue = "0.0.10"
 jni = "0.14.0"
 log = "0.4.8"
 # TODO only ask for specific features
-jni-android-sys = {version = "0.0.9",  features = [
+jni-android-sys = {version = "0.0.10",  features = [
     "api-level-28",
     "java-lang-String",
 ]}
 android_logger = "0.8"
-# piet-common = {path = "../../piet/piet-common", features = ["android"]}
-piet-common = {version = "0.0.7", features = ["android"]} 
+piet-common = {path = "../../piet/piet-common", features = ["android"]}
+# piet-common = {version = "0.0.7", features = ["android"]} 
 piet = {path = "../../piet/piet"}
 druid-shell = {path = "../../druid/druid-shell", features = ["android"]}
 image = "0.20.1"
 
 [patch.crates-io]
 # Local fork that lets us turn Local into Global
-jni-glue = {git = "https://github.com/marcopolo/jni-bindgen", branch = "jni-glue-only"}
+# jni-glue = {git = "https://github.com/marcopolo/jni-bindgen", branch = "jni-glue-only"}
 # Local fork that lets us turn argument into global
-# jni-glue = {path = "../../jni-bindgen"}
-piet-common = {git = "https://github.com/marcopolo/piet"}
-# piet-common = {path = "../../piet/piet-common"}
+jni-glue = {path = "../../jni-bindgen/jni-glue"}
+# piet-common = {git = "https://github.com/marcopolo/piet"}
+piet-common = {path = "../../piet/piet-common"}
 
 [lib]
 crate-type = ["cdylib"]

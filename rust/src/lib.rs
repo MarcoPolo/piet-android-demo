@@ -53,24 +53,6 @@ fn init_log() {
     }));
 }
 
-// fn draw_on_render_context(rc: &mut AndroidRenderContext<'_, '_>) {
-//     rc.clear(Color::WHITE);
-//     let brush = rc.solid_brush(Color::rgb8(0x00, 0x00, 0x80));
-//     rc.stroke(Line::new((10.0, 10.0), (100.0, 50.0)), &brush, 1.0);
-//     let text = rc.text();
-//     let font = text
-//         .new_font_by_name("Times New Roman", 22.0)
-//         .build()
-//         .expect("Font Creation Faield");
-//     let text_layout = text
-//         .new_text_layout(&font, "Hello World!")
-//         .build()
-//         .expect("Text layout creation failed");
-//     rc.draw_text(&text_layout, (20.0, 20.0), &brush);
-//     // AndroidText::new_text_layout(
-//     rc.finish().unwrap();
-// }
-
 #[no_mangle]
 pub extern "system" fn Java_io_marcopolo_pietdemo_MainActivity_initRust(
     env: &Env,
@@ -78,32 +60,6 @@ pub extern "system" fn Java_io_marcopolo_pietdemo_MainActivity_initRust(
     cache_path: Argument<JavaString>,
 ) {
     init_log();
-    // let cache_path = unsafe {
-    //     cache_path
-    //         .with_unchecked(env)
-    //         .expect("Cache path not given")
-    // };
-    // let cache_path = cache_path.to_string_lossy();
-
-    // let device = Device::new(env).unwrap();
-    // let width = 640;
-    // let height = 480;
-    // let mut bitmap = device.bitmap_target(width, height, 1.0).unwrap();
-    // let mut rc = bitmap.render_context();
-    // draw_on_render_context(&mut rc);
-    // let raw_pixels = bitmap
-    //     .to_raw_pixels(ImageFormat::RgbaSeparate)
-    //     .expect("Failed to get raw_pixels");
-    // let image_path = format!("{}/temp-image.png", cache_path);
-    // image::save_buffer(
-    //     &image_path,
-    //     &raw_pixels,
-    //     width as u32,
-    //     height as u32,
-    //     image::ColorType::RGBA(8),
-    // )
-    // .expect("Failed to save buffer");
-    // info!("Saved image to {}", image_path);
 }
 
 #[no_mangle]
