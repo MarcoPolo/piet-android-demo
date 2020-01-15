@@ -24,6 +24,7 @@ piet-common = {path = "../../piet/piet-common", features = ["android"]}
 # piet-common = {version = "0.0.7", features = ["android"]} 
 piet = {path = "../../piet/piet"}
 druid-shell = {path = "../../druid/druid-shell", features = ["android"]}
+druid = {path = "../../druid/druid", features = ["android"]}
 image = "0.20.1"
 
 [patch.crates-io]

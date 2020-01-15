@@ -27,6 +27,9 @@ use druid_shell::{
     MouseEvent, RunLoop, SysMods, TimerToken, WinCtx, WinHandler, WindowBuilder, WindowHandle,
 };
 
+mod calc;
+mod hello;
+
 pub fn enable_backtrace() {
     use std::env;
     let key = "RUST_BACKTRACE";
@@ -36,7 +39,7 @@ pub fn enable_backtrace() {
 fn init_log() {
     android_logger::init_once(
         Config::default()
-            .with_min_level(Level::Error) // limit log level
+            .with_min_level(Level::Trace) // limit log level
             .with_tag("Rust"), // logs will show under mytag tag
     );
     enable_backtrace();
@@ -68,7 +71,9 @@ pub extern "system" fn Java_io_marcopolo_pietdemo_MainActivity_startDruid(
     _this: jobject,
 ) {
     // main()
-    perftest_main()
+    // perftest_main()
+    calc::main();
+    // hello::main();
 }
 
 #[no_mangle]

@@ -7,6 +7,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import java.util.*
 
 class DruidView(context: Context): View(context) {
     var uiHandler = Handler(Looper.getMainLooper())
@@ -37,7 +38,10 @@ class DruidView(context: Context): View(context) {
 
     init {
         val density = context.getResources().getDisplayMetrics().density
+        val locale = context.getResources().getConfiguration().getLocales().get(0).getExtension(
+            Locale.UNICODE_LOCALE_EXTENSION)
         Log.d("DRUIDVIEW", "Density is $density")
+        Log.d("DRUIDVIEW", "Locale is $locale")
         setup(context, this, druidHandler)
     }
 
