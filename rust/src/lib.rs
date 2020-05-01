@@ -10,6 +10,7 @@ use log::*;
 use piet::kurbo::Line;
 use piet::{Color, ImageFormat, RenderContext};
 use piet_common::{AndroidRenderContext, CanvasContext, Device};
+use piet_test;
 use std::panic;
 
 pub fn enable_backtrace() {
@@ -80,6 +81,24 @@ pub extern "system" fn Java_io_marcopolo_pietdemo_MainActivity_initRust(
     info!("Saved image to {}", image_path);
 }
 
+use std::cell::RefCell;
+thread_local! {
+    pub static CURRENT_TEST: RefCell<usize> = RefCell::new(2);
+}
+static MAX_TESTS: usize = 6;
+
+#[no_mangle]
+pub extern "system" fn Java_io_marcopolo_pietdemo_MainActivity_drawNext(
+    env: &Env,
+    _this: jobject,
+    cache_path: Argument<JavaString>,
+) {
+    CURRENT_TEST.with(|current_test| {
+        *current_test.borrow_mut() += 1;
+        *current_test.borrow_mut() %= MAX_TESTS;
+    });
+}
+
 #[no_mangle]
 pub extern "system" fn Java_io_marcopolo_pietdemo_PietDemoView_onDraw(
     env: &Env,
@@ -89,6 +108,16 @@ pub extern "system" fn Java_io_marcopolo_pietdemo_PietDemoView_onDraw(
     info!("Here in onDraw");
     let canvas = unsafe { canvas.with_unchecked(env).unwrap() };
     let canvas_context = CanvasContext::new_from_canvas(canvas);
-    let mut android_render_context = AndroidRenderContext::new(canvas_context);
-    draw_on_render_context(&mut android_render_context);
+    // Constant for Nexus 5x x86 sim
+    static SCALE_FACTOR: f32 = 2.625 * 160.0 / 96.0;
+    let mut android_render_context = AndroidRenderContext::new(canvas_context, SCALE_FACTOR);
+    let n = CURRENT_TEST.with(|current_test| *current_test.borrow());
+    // if n == 2 {
+    //     // Skipping because of unhandled image format
+    //     return;
+    // }
+    piet_test::draw_test_picture(
+        &mut android_render_context,
+        CURRENT_TEST.with(|current_test| *current_test.borrow()),
+    );
 }

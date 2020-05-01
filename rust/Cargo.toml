@@ -20,6 +20,7 @@ jni-android-sys = {version = "0.0.10",  features = [
 ]}
 android_logger = "0.8"
 piet-common = {path = "../../piet/piet-common", features = ["android"]}
+piet-test = {path = "../../piet/piet-test"}
 piet = {path = "../../piet/piet"}
 image = "0.20.1"
 

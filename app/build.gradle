@@ -27,8 +27,9 @@ apply plugin: 'org.mozilla.rust-android-gradle.rust-android'
 cargo {
     module  = "../rust"       // Or whatever directory contains your Cargo.toml
     libname = "pietdemo"          // Or whatever matches Cargo.toml's [package] name.
-    targets = ["x86", "arm64"]  // See bellow for a longer list of options
-   profile = "release"
+//    targets = ["x86", "arm64"]  // See bellow for a longer list of options
+    targets = ["x86"]  // See bellow for a longer list of options
+   profile = "debug"
 }
 preBuild.dependsOn "cargoBuild"
 
