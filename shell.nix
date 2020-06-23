@@ -6,4 +6,6 @@ in pkgs.mkShell rec {
   buildInputs = rustDirShell.buildInputs ++ (with pkgs; [
     jdk14
   ]);
+  RUST_ANDROID_GRADLE_CARGO_COMMAND = rustDirShell.rustPath + "/bin/cargo";
+  RUST_ANDROID_GRADLE_RUSTC_COMMAND = rustDirShell.rustPath + "/bin/rustc";
 }
