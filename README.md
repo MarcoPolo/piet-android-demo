@@ -4,7 +4,7 @@ This is a Demo app that uses [Druid](https://github.com/xi-editor/druid/) and
 [piet-android](https://github.com/marcopolo/piet).
 
 ## Screenshot
-![android-screenshot]()
+![android-screenshot](https://marcopolo.keybase.pub/android-druid.png)
 
 ## Running
 
