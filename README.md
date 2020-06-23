@@ -1,16 +1,35 @@
 # Piet Android Demo
 
-This is a Demo app that uses
-[piet-android](https://github.com/marcopolo/piet) to draw a line with Rust. It also draws to a bitmap and saves it in a cache file to inspect later.
+This is a Demo app that uses [Druid](https://github.com/xi-editor/druid/) and
+[piet-android](https://github.com/marcopolo/piet).
 
 ## Screenshot
-![android-screenshot](https://marcopolo.keybase.pub/piet-screenshot.png)
+![android-screenshot]()
 
 ## Running
 
-The easiest approach is probably to just install Android Studio and open this folder. Then connect your phone and hit run.
+### Quickstart 1-liner (Requires Nix)
 
-You can also try using Gradle from the command line with `./gradlew installDebug` and opening the app on the Android device.
+```nix-shell --run './gradlew installDebug'```
 
-## Checking out the png
-You'll need root since the file is saved in the application's cache folder. Then run `adb pull /data/user/0/io.marcopolo.pietdemo/cache/temp-image.png` to fetch the image.
+### Setup
+
+* Install Rust and cargo.
+  * Add android specific targets: `rustup target add aarch64-linux-android
+    armv7-linux-androideabi i686-linux-android x86_64-linux-android`
+
+#### With Android Studio
+
+* Install Android Studio
+  * Install the Android SDK and NDK
+* Hit the Run button.
+
+#### With Nix
+
+With Nix you can have a working setup from the command line without requiring
+any more setup.
+* Install Nix: https://nixos.org/download.html (Used to provide the android
+  SDK/NDK)
+* Install direnv: https://direnv.net/ (Used to setup environment variables)
+  * Or just run inside of `nix-shell`. i.e. `nix-shell --run 'cargo check
+    --target x86_64-linux-android'`

@@ -31,6 +31,10 @@ image = "0.20.1"
 # Local fork that lets us turn Local into Global
 # jni-glue = {git = "https://github.com/marcopolo/jni-bindgen", branch = "jni-glue-only"}
 # Local fork that lets us turn argument into global
+# If cargo complains about "patch for `jni-glue` in
+# `https://github.com/rust-lang/crates.io-index` did not resolve to any crates."
+# then comment this line out, run cargo check, then add this line back in.
+# I don't know why??
 jni-glue = {path = "../../jni-bindgen/jni-glue"}
 # piet-common = {git = "https://github.com/marcopolo/piet"}
 piet-common = {path = "../../piet/piet-common"}
