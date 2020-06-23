@@ -11,7 +11,7 @@ time = "0.1.39"
 
 [target.'cfg(target_os = "android")'.dependencies]
 jni-sys = "0.3.0"
-jni-glue = "0.0.10"
+jni-glue = { git = "https://github.com/MarcoPolo/jni-bindgen" }
 jni = "0.14.0"
 log = "0.4.8"
 # TODO only ask for specific features
@@ -20,24 +20,15 @@ jni-android-sys = {version = "0.0.10",  features = [
     "java-lang-String",
 ]}
 android_logger = "0.8"
-piet-common = {path = "../../piet/piet-common", features = ["android"]}
-# piet-common = {version = "0.0.7", features = ["android"]} 
-piet = {path = "../../piet/piet"}
-druid-shell = {path = "../../druid/druid-shell", features = ["android"]}
-druid = {path = "../../druid/druid", features = ["android"]}
+piet-common = {git = "https://github.com/marcopolo/piet", features = ["android"]}
+piet = {git = "https://github.com/marcopolo/piet"}
+druid-shell = {git = "https://github.com/marcopolo/druid", branch = "android-druid", features = ["android"]}
+druid = {git = "https://github.com/marcopolo/druid", branch = "android-druid", features = ["android"]}
 image = "0.20.1"
 
 [patch.crates-io]
-# Local fork that lets us turn Local into Global
-# jni-glue = {git = "https://github.com/marcopolo/jni-bindgen", branch = "jni-glue-only"}
-# Local fork that lets us turn argument into global
-# If cargo complains about "patch for `jni-glue` in
-# `https://github.com/rust-lang/crates.io-index` did not resolve to any crates."
-# then comment this line out, run cargo check, then add this line back in.
-# I don't know why??
-jni-glue = {path = "../../jni-bindgen/jni-glue"}
-# piet-common = {git = "https://github.com/marcopolo/piet"}
-piet-common = {path = "../../piet/piet-common"}
+jni-glue = {git = "https://github.com/marcopolo/jni-bindgen"}
+piet-common = {git = "https://github.com/marcopolo/piet"}
 
 [lib]
 crate-type = ["cdylib"]
